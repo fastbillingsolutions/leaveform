@@ -30,20 +30,29 @@
         font-weight: bold;
     }
     input, select {
-        width: 95%;
+        width: 100%;
         padding: 4px;
         border: none;
         background: transparent;
         font-size: 14px;
     }
-    .acknowledgment {
-        margin-top: 20px;
-        border: 1px solid #000;
-        padding: 10px;
-    }
     .blue-text {
         color: #005B9A;
         font-weight: bold;
+    }
+    .acknowledgment {
+        margin-top: 20px;
+        border: 1px solid #000;
+        padding: 0;
+    }
+    .acknowledgment table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .acknowledgment td {
+        border: 1px solid #000;
+        padding: 8px;
+        vertical-align: middle;
     }
 </style>
 </head>
@@ -75,15 +84,17 @@
     </table>
 
     <div class="acknowledgment">
-        <p><label>Employee Name:</label> <input type="text" class="blue-text"></p>
-        <p><label>Department:</label> <input type="text"></p>
-        <p><label>Employee ID:</label> <input type="text"></p>
-        <p><label>Position:</label> <input type="text"></p>
-        <p><label>Date of Request:</label> <input type="date"></p>
-        <p><label>Supervisor Name:</label> <input type="text" value="James Michell" class="blue-text"></p>
-        <p><label>Status:</label> <input type="text" value="Approved"></p>
-        <p><label>Date:</label> <input type="date"></p>
-        <p><label>Employee Signature:</label> <input type="text"></p>
+        <table>
+            <tr><td><label>Employee Name:</label></td><td><input type="text" class="blue-text"></td></tr>
+            <tr><td><label>Department:</label></td><td><input type="text"></td></tr>
+            <tr><td><label>Employee ID:</label></td><td><input type="text"></td></tr>
+            <tr><td><label>Position:</label></td><td><input type="text"></td></tr>
+            <tr><td><label>Date of Request:</label></td><td><input type="date"></td></tr>
+            <tr><td><label>Supervisor Name:</label></td><td><input type="text" value="James Michell" class="blue-text"></td></tr>
+            <tr><td><label>Status:</label></td><td><input type="text" value="Approved"></td></tr>
+            <tr><td><label>Date:</label></td><td><input type="date"></td></tr>
+            <tr><td><label>Employee Signature:</label></td><td><input type="text"></td></tr>
+        </table>
     </div>
 
     <script>
