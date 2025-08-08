@@ -1,214 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FastBillingSolutions Leave Request Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave Application Form</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 20px;
-  }
-
-  .form-container {
-    width: 794px; /* A4 width in px at 96dpi */
-    background: white;
-    border: 2px solid #0c4975;
-    padding: 30px;
-    margin: auto;
-  }
-
-  h2 {
-    text-align: center;
-    color: #0c4975;
-    margin-bottom: 10px;
-  }
-
-  .instructions {
-    background: #e9f3fc;
-    border: 1px solid #bcdffb;
-    padding: 15px;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-  }
-
-  .section-title {
-    background-color: #0c4975;
-    color: white;
-    padding: 10px;
-    margin-top: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .form-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-  }
-
-  .form-group label {
-    flex: 1 0 25%;
-    font-weight: bold;
-    padding: 5px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    flex: 1 0 70%;
-    padding: 7px;
-    margin-bottom: 5px;
-    font-size: 14px;
-  }
-
-  .checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 10px 0 0 20px;
-  }
-
-  .checkbox-group label {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 6px;
-  }
-
-  textarea {
-    width: 100%;
-    height: 80px;
-  }
-
-  .submit-btn {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .submit-btn button {
-    background-color: #0c4975;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .submit-btn button:hover {
-    background-color: #08375c;
-  }
-
-  /* Highlight checked checkboxes */
-  .checkbox-group input[type="checkbox"]:checked + span {
-    font-weight: bold;
-    color: red;
-  }
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        padding: 20px;
+    }
+    .form-container {
+        width: 800px;
+        background: #eaf0f6;
+        border: 3px solid #1b4b5a;
+        border-radius: 10px;
+        padding: 20px 30px;
+        margin: auto;
+    }
+    h1 {
+        text-align: center;
+        color: #0c3b4a;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    label {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    input, select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 4px;
+        font-size: 14px;
+    }
+    .dates {
+        display: flex;
+        gap: 15px;
+        background: #dce8f4;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    .ack {
+        height: 80px;
+        border: 1px solid #ccc;
+        background: white;
+        margin-bottom: 15px;
+    }
+    .leave-type {
+        margin-top: 10px;
+    }
+    .leave-type label {
+        font-weight: normal;
+        margin-right: 15px;
+    }
+    .approval {
+        margin-top: 20px;
+        padding-top: 10px;
+    }
+    .notes {
+        background: #0c3b4a;
+        color: white;
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        max-width: 250px;
+        margin-top: 20px;
+    }
+    .flex-space {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 </head>
 <body>
-<div class="form-container" id="leaveForm">
-  <h2>FastBillingSolutions Leave Request Form</h2>
-
-  <div class="instructions">
-    <strong>How to submit a leave request:</strong>
-    <ol>
-      <li>Fill out the leave request form with accurate details.</li>
-      <li>Submit the form to HR for processing.</li>
-      <li>HR will provide a copy of the approved request for your records.</li>
-    </ol>
-  </div>
-
-  <form id="leaveRequestForm">
-    <div class="section-title">Employee Details</div>
-    <div class="form-group">
-      <label>Employee Name:</label>
-      <input type="text" name="employee_name" value="Muhammad Farrukh Javaid" required />
-    </div>
-    <div class="form-group">
-      <label>Department:</label>
-      <input type="text" name="department" required />
-    </div>
-    <div class="form-group">
-      <label>Job Title:</label>
-      <input type="text" name="job_title" value="Team Lead" required />
-    </div>
-    <div class="form-group">
-      <label>Supervisor Email:</label>
-      <input type="email" name="supervisor_email" value="alexjohns.fastbillingsolutiq@gmail.com" required />
+<div class="form-container">
+    <h1>LEAVE APPLICATION FORM</h1>
+    
+    <div class="row">
+        <div><label>Employee Name:</label> <input type="text" value="James Smith"></div>
+        <div><label>Department:</label> <input type="text" value="Sales"></div>
     </div>
 
-    <div class="section-title">Leave Request Details</div>
-    <div class="form-group">
-      <label>Starting Date:</label>
-      <input type="date" name="start_date" value="2025-08-05" required />
-    </div>
-    <div class="form-group">
-      <label>Ending Date:</label>
-      <input type="date" name="end_date" value="2025-08-05" required />
-    </div>
-    <div class="form-group">
-      <label>Leave Type:</label>
-      <select name="leave_type">
-        <option>Casual Leave</option>
-        <option>Sick Leave</option>
-        <option>Annual Leave</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Leave Duration:</label>
-      <select name="leave_duration">
-        <option>Full Day</option>
-        <option selected>Half Day</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Leave Count:</label>
-      <input type="number" name="leave_count" step="0.5" value="0.5" required />
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" name="half_day[]" value="1st Half"><span>1st Half</span></label>
-      <label><input type="checkbox" name="half_day[]" value="2nd Half"><span>2nd Half</span></label>
+    <div class="row">
+        <div><label>Employee ID:</label> <input type="text" value="IDN – 10012"></div>
+        <div><label>Position:</label> <input type="text" value="Sales Manager"></div>
+        <div><label>Date of Request:</label> <input type="date" value="2053-08-10"></div>
     </div>
 
-    <div class="section-title">Reason for Leave Request</div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" name="reason[]" value="Vacation / Annual"><span>Vacation / Annual</span></label>
-      <label><input type="checkbox" name="reason[]" value="Family Reason"><span>Family Reason</span></label>
-      <label><input type="checkbox" name="reason[]" value="Emergency Leave"><span>Emergency Leave</span></label>
-      <label><input type="checkbox" name="reason[]" value="Health Condition"><span>Health Condition, Illness or Injury</span></label>
-    </div>
-    <div class="form-group">
-      <label>Personal Reason Note:</label>
-      <textarea name="personal_reason_note"></textarea>
+    <div class="dates">
+        <div><label>Leave Start Date:</label> <input type="date" value="2053-08-25"></div>
+        <div><label>Leave End Date:</label> <input type="date" value="2053-08-31"></div>
+        <div><label>No. of Days:</label> <input type="number" value="6" style="width:50px;"></div>
     </div>
 
-    <div class="submit-btn">
-      <button type="button" id="downloadBtn">Submit & Download JPG</button>
+    <label>Acknowledgment:</label>
+    <textarea class="ack"></textarea>
+
+    <div class="leave-type">
+        <label><input type="checkbox"> Vacation Leave</label>
+        <label><input type="checkbox" checked> Sick Leave</label>
+        <label><input type="checkbox"> Personal Leave</label>
+        <label>Other: <input type="text"></label>
     </div>
-  </form>
+
+    <div class="flex-space approval">
+        <div>
+            <div><label>Supervisor Name:</label> <input type="text" value="James Michell"></div>
+            <div><label>Status:</label> <input type="text" value="Approved"></div>
+            <div><label>Date:</label> <input type="date" value="2053-08-11"></div>
+        </div>
+        <div>
+            <div style="text-align:center; margin-bottom:10px;">Employee Signature</div>
+            <div style="height:40px; border-bottom:1px solid #000; margin-bottom:10px;"></div>
+            <div style="text-align:center;">Date</div>
+        </div>
+    </div>
+
+    <div class="notes">
+        <strong>NOTES:</strong><br>
+        Please submit this form to your supervisor/manager at least 15 days prior to your intended leave start date.
+    </div>
 </div>
-
-<!-- html2canvas CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
-  document.getElementById('downloadBtn').addEventListener('click', function() {
-    html2canvas(document.getElementById('leaveForm'), {
-      scale: 2
-    }).then(function(canvas) {
-      let link = document.createElement('a');
-      link.download = 'Leave_Request_Form.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 1.0);
-      link.click();
-    });
-  });
-</script>
 </body>
 </html>
