@@ -3,31 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leave Application Form</title>
+<title>FastBillingSolutions Leave Request Form</title>
 <style>
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
     body {
         font-family: Arial, sans-serif;
         background: #f4f6f8;
+        display: flex;
+        justify-content: center;
         padding: 20px;
     }
     .form-container {
-        width: 800px;
+        width: 21cm;
+        min-height: 29.7cm;
         background: #eaf0f6;
         border: 3px solid #1b4b5a;
         border-radius: 10px;
         padding: 20px 30px;
-        margin: auto;
+        box-sizing: border-box;
     }
     h1 {
         text-align: center;
         color: #0c3b4a;
         margin-bottom: 20px;
-        font-size: 24px;
+        font-size: 22px;
     }
     .row {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
+        flex-wrap: wrap;
     }
     label {
         font-weight: bold;
@@ -49,11 +57,13 @@
         margin-bottom: 15px;
         align-items: center;
     }
-    .ack {
-        height: 80px;
-        border: 1px solid #ccc;
-        background: white;
-        margin-bottom: 15px;
+    .acknowledgment {
+        margin: 10px 0 20px 0;
+    }
+    .ack-line {
+        border-bottom: 1px solid #aaa;
+        margin: 6px 0;
+        height: 14px;
     }
     .leave-type {
         margin-top: 10px;
@@ -72,19 +82,20 @@
         padding: 10px;
         font-size: 12px;
         border-radius: 5px;
-        max-width: 250px;
+        max-width: 300px;
         margin-top: 20px;
     }
     .flex-space {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        margin-top: 20px;
     }
 </style>
 </head>
 <body>
 <div class="form-container">
-    <h1>LEAVE APPLICATION FORM</h1>
+    <h1>FastBillingSolutions Leave Request Form</h1>
     
     <div class="row">
         <div><label>Employee Name:</label> <input type="text" value="James Smith"></div>
@@ -98,13 +109,19 @@
     </div>
 
     <div class="dates">
-        <div><label>Leave Start Date:</label> <input type="date" value="2053-08-25"></div>
-        <div><label>Leave End Date:</label> <input type="date" value="2053-08-31"></div>
-        <div><label>No. of Days:</label> <input type="number" value="6" style="width:50px;"></div>
+        <div><label>Leave Start Date:</label> <input type="date" id="startDate" value="2053-08-25"></div>
+        <div><label>Leave End Date:</label> <input type="date" id="endDate" value="2053-08-31"></div>
+        <div><label>No. of Days:</label> <input type="number" id="numDays" value="6" style="width:50px;" readonly></div>
     </div>
 
     <label>Acknowledgment:</label>
-    <textarea class="ack"></textarea>
+    <div class="acknowledgment">
+        <div class="ack-line"></div>
+        <div class="ack-line"></div>
+        <div class="ack-line"></div>
+        <div class="ack-line"></div>
+        <div class="ack-line"></div>
+    </div>
 
     <div class="leave-type">
         <label><input type="checkbox"> Vacation Leave</label>
@@ -131,5 +148,24 @@
         Please submit this form to your supervisor/manager at least 15 days prior to your intended leave start date.
     </div>
 </div>
+
+<script>
+    const startDate = document.getElementById("startDate");
+    const endDate = document.getElementById("endDate");
+    const numDays = document.getElementById("numDays");
+
+    function calculateDays() {
+        if (startDate.value && endDate.value) {
+            const start = new Date(startDate.value);
+            const end = new Date(endDate.value);
+            const diffTime = end - start;
+            const diffDays = diffTime / (1000 * 60 * 60 * 24) + 1;
+            numDays.value = diffDays > 0 ? diffDays : 0;
+        }
+    }
+
+    startDate.addEventListener("change", calculateDays);
+    endDate.addEventListener("change", calculateDays);
+</script>
 </body>
 </html>
