@@ -47,12 +47,6 @@
     margin-bottom: 6px;
     user-select: none;
   }
-  header img {
-    height: 50px;
-    border-radius: 6px;
-    background: white;
-    padding: 6px;
-  }
   header h1 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -97,7 +91,6 @@
     user-select: none;
     position: relative;
   }
-  /* Label invalid styling with red color, bold, and red asterisk */
   label.invalid {
     color: #d32f2f !important;
     font-weight: 700 !important;
@@ -131,8 +124,6 @@
     min-height: 80px;
     resize: vertical;
   }
-
-  /* For textarea invalid styling */
   textarea.invalid {
     border-color: #d32f2f !important;
     font-weight: 700 !important;
@@ -170,6 +161,18 @@
     min-height: 24px;
   }
 
+  /* Style for the Note message */
+  .note-message {
+    margin: 12px 0 20px;
+    padding: 10px;
+    background: #e3f2fd;
+    border-left: 4px solid #1565c0;
+    color: #1565c0;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+
   @media print {
     body {
       background: white;
@@ -191,8 +194,7 @@
   <div class="card" id="formContainer" aria-label="Leave Request Form">
 
     <header>
-      <img src="455967797_798064215835912_4324813238057915484_n.jpg" alt="FBS Logo" />
-      <h1>FastBilling Solutions</h1>
+      <h1>Fast Billing Solutions</h1>
     </header>
 
     <div class="subheading">Leave Request Form</div>
@@ -205,17 +207,17 @@
       <tr>
         <td style="width:30%"><label for="employeeName" id="labelEmployeeName">Employee Name:</label></td>
         <td style="width:40%">
-          <input type="text" id="employeeName" placeholder="e.g. John Doe" />
+          <input type="text" id="employeeName" placeholder="e.g. abc" />
         </td>
         <td style="width:15%"><label for="designation" id="labelDesignation">Designation:</label></td>
         <td style="width:15%">
-          <input type="text" id="designation" placeholder="e.g. Accountant" />
+          <input type="text" id="designation" placeholder="e.g. AR Executive" />
         </td>
       </tr>
       <tr>
-        <td><label for="department" id="labelDepartment">Department:</label></td>
+        <td><label for="department" id="labelDepartment">Team / Department:</label></td>
         <td>
-          <input type="text" id="department" placeholder="e.g. Finance" />
+          <input type="text" id="department" placeholder="e.g. Labs" />
         </td>
         <td><label for="date" id="labelDate">Date:</label></td>
         <td><input type="date" id="date" /></td>
@@ -252,8 +254,7 @@
         <td>
           <select id="leaveDuration">
             <option value="full">Full Day</option>
-            <option value="half_morning">Half Day (Morning)</option>
-            <option value="half_afternoon">Half Day (Afternoon)</option>
+            <option value="half_morning">Half Day</option>
           </select>
         </td>
         <td></td>
@@ -266,6 +267,11 @@
       Reason for Leave
     </div>
     <textarea id="reason" placeholder="Short description..."></textarea>
+
+    <!-- Note added here -->
+    <p class="note-message">
+      <strong>Note:</strong> Our online leave application portal is currently under development. In the meantime, we are sharing the application form with you. To apply for leave, please complete the form, download it as a JPG image, and email the attachment to the concerned persons.
+    </p>
 
     <div class="submit-row">
       <button class="submit-btn" id="submitBtn" type="button">Download Form</button>
@@ -286,7 +292,6 @@
     const days = document.getElementById('days');
     const leaveDuration = document.getElementById('leaveDuration');
 
-    // Labels for validation style changes
     const labels = {
       employeeName: document.getElementById('labelEmployeeName'),
       designation: document.getElementById('labelDesignation'),
@@ -409,7 +414,6 @@
       return true;
     }
 
-    // Add event listeners to inputs to remove invalid styles on input
     function addInputListeners() {
       Object.entries(labels).forEach(([key, label]) => {
         const el = document.getElementById(key);
@@ -453,14 +457,16 @@
         console.warn('html2canvas load error:', err);
         setStatus('html2canvas failed to load — opening printable view as fallback.');
         openPrintableWindow(container.outerHTML);
-        alert(
-          'Renderer failed to load. A printable version has been opened in a new tab — save/print it and email to alexjohns.fastbillingsolutions@gmail.com'
-        );
+        alert('Renderer failed to load. A printable version has been opened in a new tab — save/print it.');
         submitBtn.disabled = false;
         return;
       }
 
       setStatus('Rendering the form into an image...');
+      
+      // Hide the Download button before rendering
+      submitBtn.style.display = 'none';
+
       try {
         const canvas = await window.html2canvas(container, {
           useCORS: true,
@@ -472,6 +478,9 @@
         setStatus('Converting to image file...');
         canvas.toBlob(
           (blob) => {
+            // Restore the button visibility
+            submitBtn.style.display = '';
+
             if (!blob) {
               setStatus('Failed to create image blob.');
               alert('Failed to create image file.');
@@ -494,11 +503,12 @@
         );
       } catch (err) {
         console.error('Render error:', err);
+        // Restore the button visibility in case of error
+        submitBtn.style.display = '';
+
         setStatus('Error generating image. Opening printable view as fallback.');
         openPrintableWindow(container.outerHTML);
-        alert(
-          'Error generating the image. A printable version has been opened in a new tab — please save and email to alexjohns.fastbillingsolutions@gmail.com'
-        );
+        alert('Error generating the image. A printable version has been opened in a new tab — please save it.');
         submitBtn.disabled = false;
       }
     }
