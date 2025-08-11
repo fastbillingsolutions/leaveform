@@ -1,210 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>FastBillingSolutions Leave Request Form</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
+  @page { size: A4 portrait; margin: 18mm; }
+  html, body {
+    height: 100%;
+    margin: 0; padding: 0;
+    background: #f3f7fb;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #1b2b3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  .page {
+    width: 90vw;
+    max-width: 210mm;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 210mm;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 30px rgba(16,24,40,0.06);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  header img {
+    height: 50px;
+    border-radius: 6px;
+    background: white;
+    padding: 6px;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1565c0;
+    margin: 0;
+  }
+  .subheading {
+    text-align: center;
+    font-weight: 600;
+    color: #1e88e5;
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-weight: 700;
+    background: #e3f2fd;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1565c0;
+  }
+  .section-title img {
+    width: 22px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-top: 12px;
+  }
+  td {
+    padding: 8px 10px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  label {
+    user-select: none;
+    position: relative;
+  }
+  /* Label invalid styling with red color, bold, and red asterisk */
+  label.invalid {
+    color: #d32f2f !important;
+    font-weight: 700 !important;
+    position: relative;
+  }
+  label.invalid::before {
+    content: "*";
+    color: #d32f2f;
+    font-weight: 700;
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #1e88e5;
+    outline: none;
+  }
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  /* For textarea invalid styling */
+  textarea.invalid {
+    border-color: #d32f2f !important;
+    font-weight: 700 !important;
+  }
+
+  .submit-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .submit-btn {
+    background-color: #1565c0;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  .submit-btn:hover:not(:disabled) {
+    background-color: #0d47a1;
+  }
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #status {
+    margin-top: 14px;
+    color: #1565c0;
+    font-size: 1rem;
+    text-align: center;
+    min-height: 24px;
+  }
+
+  @media print {
     body {
-        font-family: 'Segoe UI', Tahoma, sans-serif;
-        background: linear-gradient(135deg, #dcefff, #f4f7fb);
-        margin: 0;
-        padding: 20px;
+      background: white;
     }
-    .container {
-        width: 90%;
-        max-width: 1000px;
-        margin: auto;
-        background: white;
-        padding: 30px 40px;
-        border-radius: 16px;
-        box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
-        animation: fadeIn 0.5s ease-in-out;
+    .card {
+      box-shadow: none;
+      border: none;
+      padding: 0;
     }
-    h1 {
-        text-align: center;
-        background: linear-gradient(90deg, #0066cc, #00b4d8);
-        color: white;
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 2em;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    .submit-row {
+      display: none;
     }
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px 20px;
-        margin-top: 10px;
-    }
-    .form-group label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 5px;
-        color: #333;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 0.95em;
-        transition: 0.2s ease-in-out;
-    }
-    input:focus, select:focus, textarea:focus {
-        border-color: #00b4d8;
-        outline: none;
-        box-shadow: 0 0 6px rgba(0, 180, 216, 0.4);
-    }
-    textarea {
-        resize: none;
-    }
-    .section-title {
-        font-weight: bold;
-        background: #e3f2fd;
-        padding: 10px 12px;
-        border-radius: 6px;
-        margin: 20px 0 10px;
-        display: flex;
-        align-items: center;
-        font-size: 1.1em;
-        box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-    }
-    .section-title img {
-        width: 22px;
-        margin-right: 8px;
-    }
-    .leave-type {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .leave-type label {
-        cursor: pointer;
-        padding: 6px 10px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        background: #f5f5f5;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    .leave-type input[type="checkbox"] {
-        display: none;
-    }
-    .leave-type input[type="checkbox"]:checked + span {
-        font-weight: bold;
-        color: red;
-    }
-    .signature-box {
-        height: 50px;
-        border-bottom: 1px dashed #555;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @media print {
-        body { background: white; }
-        .container { box-shadow: none; }
-        h1 { background: #333 !important; color: white; }
-    }
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>FastBillingSolutions Leave Request Form</h1>
+<div class="page">
+  <div class="card" id="formContainer" aria-label="Leave Request Form">
+
+    <header>
+      <img src="455967797_798064215835912_4324813238057915484_n.jpg" alt="FBS Logo" />
+      <h1>FastBilling Solutions</h1>
+    </header>
+
+    <div class="subheading">Leave Request Form</div>
 
     <div class="section-title">
-        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"> Employee Information
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Employee Icon" />
+      Employee Information
     </div>
-    <div class="form-grid">
-        <div class="form-group">
-            <label>Employee Name:</label>
-            <input type="text">
-        </div>
-        <div class="form-group">
-            <label>Designation:</label>
-            <input type="text">
-        </div>
-        <div class="form-group">
-            <label>Department:</label>
-            <input type="text">
-        </div>
-        <div class="form-group">
-            <label>Employee ID:</label>
-            <input type="text">
-        </div>
-    </div>
+    <table>
+      <tr>
+        <td style="width:30%"><label for="employeeName" id="labelEmployeeName">Employee Name:</label></td>
+        <td style="width:40%">
+          <input type="text" id="employeeName" placeholder="e.g. John Doe" />
+        </td>
+        <td style="width:15%"><label for="designation" id="labelDesignation">Designation:</label></td>
+        <td style="width:15%">
+          <input type="text" id="designation" placeholder="e.g. Accountant" />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="department" id="labelDepartment">Department:</label></td>
+        <td>
+          <input type="text" id="department" placeholder="e.g. Finance" />
+        </td>
+        <td><label for="date" id="labelDate">Date:</label></td>
+        <td><input type="date" id="date" /></td>
+      </tr>
+    </table>
 
     <div class="section-title">
-        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"> Leave Details
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Leave Icon" />
+      Leave Details
     </div>
-    <div class="form-grid">
-        <div class="form-group">
-            <label>Leave Start Date:</label>
-            <input type="date">
-        </div>
-        <div class="form-group">
-            <label>Leave End Date:</label>
-            <input type="date">
-        </div>
-        <div class="form-group">
-            <label>No. of Days:</label>
-            <input type="number">
-        </div>
-        <div class="form-group">
-            <label>Leave Type:</label>
-            <div class="leave-type">
-                <label>
-                    <input type="checkbox"><span>Casual Leave</span>
-                </label>
-                <label>
-                    <input type="checkbox"><span>Sick Leave</span>
-                </label>
-                <label>
-                    <input type="checkbox"><span>Annual Leave</span>
-                </label>
-            </div>
-        </div>
-    </div>
+    <table>
+      <tr>
+        <td style="width:22%"><label for="startDate" id="labelStartDate">Leave Start Date:</label></td>
+        <td style="width:28%"><input type="date" id="startDate" /></td>
+        <td style="width:22%"><label for="endDate" id="labelEndDate">Leave End Date:</label></td>
+        <td style="width:28%"><input type="date" id="endDate" /></td>
+      </tr>
+      <tr>
+        <td><label for="days" id="labelDays">No. of Days:</label></td>
+        <td>
+          <input type="number" id="days" readonly placeholder="Auto-calculated" />
+        </td>
+        <td><label for="leaveType" id="labelLeaveType">Leave Type:</label></td>
+        <td>
+          <select id="leaveType">
+            <option>Casual Leave</option>
+            <option>Sick Leave</option>
+            <option>Annual Leave</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="leaveDuration" id="labelLeaveDuration">Leave Duration:</label></td>
+        <td>
+          <select id="leaveDuration">
+            <option value="full">Full Day</option>
+            <option value="half_morning">Half Day (Morning)</option>
+            <option value="half_afternoon">Half Day (Afternoon)</option>
+          </select>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
     <div class="section-title">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png"> Reason for Leave
+      <img src="https://cdn-icons-png.flaticon.com/512/1157/1157109.png" alt="Reason Icon" />
+      Reason for Leave
     </div>
-    <div class="form-group">
-        <textarea rows="3" placeholder="Write your reason here..."></textarea>
+    <textarea id="reason" placeholder="Short description..."></textarea>
+
+    <div class="submit-row">
+      <button class="submit-btn" id="submitBtn" type="button">Download Form</button>
     </div>
 
-    <div class="section-title">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png"> Acknowledgment
-    </div>
-    <div class="form-grid">
-        <div class="form-group">
-            <label>Date of Request:</label>
-            <input type="date">
-        </div>
-        <div class="form-group">
-            <label>Status:</label>
-            <select>
-                <option>Pending</option>
-                <option>Approved</option>
-                <option>Rejected</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Date:</label>
-            <input type="date">
-        </div>
-        <div class="form-group">
-            <label>Employee Signature:</label>
-            <div class="signature-box"></div>
-        </div>
-    </div>
+    <div id="status" aria-live="polite"></div>
+  </div>
 </div>
+
+<script>
+  (function () {
+    const submitBtn = document.getElementById('submitBtn');
+    const statusEl = document.getElementById('status');
+    const containerSelector = '#formContainer';
+
+    const start = document.getElementById('startDate');
+    const end = document.getElementById('endDate');
+    const days = document.getElementById('days');
+    const leaveDuration = document.getElementById('leaveDuration');
+
+    // Labels for validation style changes
+    const labels = {
+      employeeName: document.getElementById('labelEmployeeName'),
+      designation: document.getElementById('labelDesignation'),
+      department: document.getElementById('labelDepartment'),
+      date: document.getElementById('labelDate'),
+      startDate: document.getElementById('labelStartDate'),
+      endDate: document.getElementById('labelEndDate'),
+      leaveType: document.getElementById('labelLeaveType'),
+      leaveDuration: document.getElementById('labelLeaveDuration'),
+      reason: null,
+    };
+    const reasonTextarea = document.getElementById('reason');
+
+    function setStatus(text) {
+      statusEl.textContent = text || '';
+    }
+
+    function loadScript(url, timeout = 12000) {
+      return new Promise((resolve, reject) => {
+        if (window.html2canvas) return resolve();
+        const s = document.createElement('script');
+        s.src = url;
+        s.async = true;
+        let timer = setTimeout(() => {
+          s.onerror = s.onload = null;
+          reject(new Error('Timeout loading ' + url));
+        }, timeout);
+        s.onload = () => {
+          clearTimeout(timer);
+          resolve();
+        };
+        s.onerror = () => {
+          clearTimeout(timer);
+          reject(new Error('Failed to load ' + url));
+        };
+        document.head.appendChild(s);
+      });
+    }
+
+    function updateDays() {
+      const dur = leaveDuration ? leaveDuration.value : 'full';
+      if (typeof dur === 'string' && dur.startsWith('half')) {
+        days.value = 0.5;
+        days.readOnly = true;
+        return;
+      }
+      days.readOnly = true;
+      if (!start.value || !end.value) {
+        days.value = '';
+        return;
+      }
+      const s = new Date(start.value + 'T00:00:00');
+      const e = new Date(end.value + 'T00:00:00');
+      if (isNaN(s) || isNaN(e)) {
+        days.value = '';
+        return;
+      }
+      const diffDays = Math.round((e - s) / (1000 * 60 * 60 * 24)) + 1;
+      days.value = diffDays > 0 ? diffDays : 0;
+    }
+
+    function ensureImgsCORS(container) {
+      try {
+        const imgs = container.querySelectorAll('img');
+        imgs.forEach((img) => {
+          try {
+            img.crossOrigin = 'anonymous';
+          } catch (e) {}
+        });
+      } catch (e) {}
+    }
+
+    function clearValidationStyles() {
+      Object.values(labels).forEach(label => {
+        if (label) {
+          label.classList.remove('invalid');
+          if(label.dataset.origText) label.textContent = label.dataset.origText;
+        }
+      });
+      reasonTextarea.classList.remove('invalid');
+    }
+
+    function validateForm() {
+      clearValidationStyles();
+      const requiredFields = [
+        { id: 'employeeName', name: 'Employee Name' },
+        { id: 'designation', name: 'Designation' },
+        { id: 'department', name: 'Department' },
+        { id: 'date', name: 'Date' },
+        { id: 'startDate', name: 'Leave Start Date' },
+        { id: 'endDate', name: 'Leave End Date' },
+        { id: 'leaveType', name: 'Leave Type' },
+        { id: 'leaveDuration', name: 'Leave Duration' },
+        { id: 'reason', name: 'Reason for Leave' },
+      ];
+
+      for (const field of requiredFields) {
+        const el = document.getElementById(field.id);
+        const label = labels[field.id];
+        if (!el || !el.value || el.value.trim() === '') {
+          if (label) {
+            label.classList.add('invalid');
+          } else if(field.id === 'reason'){
+            reasonTextarea.classList.add('invalid');
+          }
+          alert(`Please fill the "${field.name}" field.`);
+          el && el.focus();
+          return false;
+        }
+      }
+
+      if (new Date(start.value) > new Date(end.value)) {
+        labels.startDate.classList.add('invalid');
+        labels.endDate.classList.add('invalid');
+        alert('Leave End Date must be after or equal to Leave Start Date.');
+        start.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    // Add event listeners to inputs to remove invalid styles on input
+    function addInputListeners() {
+      Object.entries(labels).forEach(([key, label]) => {
+        const el = document.getElementById(key);
+        if (!el) return;
+        el.addEventListener('input', () => {
+          if (label && label.classList.contains('invalid') && el.value.trim() !== '') {
+            label.classList.remove('invalid');
+          }
+        });
+      });
+      reasonTextarea.addEventListener('input', () => {
+        if (reasonTextarea.classList.contains('invalid') && reasonTextarea.value.trim() !== '') {
+          reasonTextarea.classList.remove('invalid');
+        }
+      });
+    }
+
+    async function submitHandler() {
+      if (!validateForm()) {
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setStatus('Preparing the form image...');
+
+      const container = document.querySelector(containerSelector);
+      if (!container) {
+        alert('Form container not found.');
+        submitBtn.disabled = false;
+        return;
+      }
+
+      ensureImgsCORS(container);
+
+      try {
+        setStatus('Loading renderer (html2canvas)...');
+        await loadScript(
+          'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
+        );
+      } catch (err) {
+        console.warn('html2canvas load error:', err);
+        setStatus('html2canvas failed to load — opening printable view as fallback.');
+        openPrintableWindow(container.outerHTML);
+        alert(
+          'Renderer failed to load. A printable version has been opened in a new tab — save/print it and email to alexjohns.fastbillingsolutions@gmail.com'
+        );
+        submitBtn.disabled = false;
+        return;
+      }
+
+      setStatus('Rendering the form into an image...');
+      try {
+        const canvas = await window.html2canvas(container, {
+          useCORS: true,
+          scale: 2,
+          logging: false,
+        });
+        if (!canvas) throw new Error('Rendering returned no canvas');
+
+        setStatus('Converting to image file...');
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              setStatus('Failed to create image blob.');
+              alert('Failed to create image file.');
+              submitBtn.disabled = false;
+              return;
+            }
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'leave_request.jpg';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            setStatus('Form downloaded successfully.');
+            submitBtn.disabled = false;
+          },
+          'image/jpeg',
+          0.92
+        );
+      } catch (err) {
+        console.error('Render error:', err);
+        setStatus('Error generating image. Opening printable view as fallback.');
+        openPrintableWindow(container.outerHTML);
+        alert(
+          'Error generating the image. A printable version has been opened in a new tab — please save and email to alexjohns.fastbillingsolutions@gmail.com'
+        );
+        submitBtn.disabled = false;
+      }
+    }
+
+    function openPrintableWindow(html) {
+      const w = window.open('', '_blank');
+      const styles = Array.from(
+        document.querySelectorAll('style, link[rel="stylesheet"]')
+      )
+        .map((n) => n.outerHTML)
+        .join('\n');
+      w.document.write(
+        '<!doctype html><html><head><meta charset="utf-8"><title>Printable Leave Request</title>' +
+          styles +
+          '</head><body>'
+      );
+      w.document.write(html);
+      w.document.write('</body></html>');
+      w.document.close();
+    }
+
+    submitBtn.addEventListener('click', submitHandler);
+    start.addEventListener('change', updateDays);
+    start.addEventListener('input', updateDays);
+    end.addEventListener('change', updateDays);
+    end.addEventListener('input', updateDays);
+    leaveDuration.addEventListener('change', updateDays);
+
+    addInputListeners();
+    updateDays();
+  })();
+</script>
 
 </body>
 </html>
