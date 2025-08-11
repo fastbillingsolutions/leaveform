@@ -2,93 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FastBillingSolutions Leave Request Form</title>
 <style>
-    @page {
-        size: A4 landscape;
-        margin: 0;
-    }
     body {
-        font-family: Arial, sans-serif;
-        background-color: white;
-        color: #000;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: #f4f7fb;
         margin: 0;
-        padding: 5mm;
+        padding: 0;
+    }
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        padding: 20px 40px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     }
     h1 {
         text-align: center;
-        color: #005B9A;
+        background: linear-gradient(90deg, #0066cc, #00b4d8);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.8em;
     }
     table {
-        width: 70%;
-        margin: 0 auto 10px auto;
+        width: 100%;
         border-collapse: collapse;
-        table-layout: fixed;
+        margin-top: 20px;
     }
-    td, th {
-        border: 1px solid #000;
-        padding: 8px;
-        vertical-align: top;
+    td {
+        padding: 10px;
+        vertical-align: middle;
     }
-    label {
+    .section-title {
         font-weight: bold;
-        display: block;
+        background: #e3f2fd;
+        padding: 8px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .section-title img {
+        width: 20px;
+        margin-right: 8px;
     }
     input, select, textarea {
         width: 100%;
-        padding: 4px;
-        border: none;
-        background: transparent;
-        font-size: 14px;
-        box-sizing: border-box;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
     }
-    .blue-text {
-        color: #005B9A;
-        font-weight: bold;
+    textarea {
+        resize: none;
+    }
+    .signature-box {
+        height: 50px;
+        border-bottom: 1px dashed #555;
+    }
+    @media print {
+        body {
+            background: white;
+        }
+        .container {
+            box-shadow: none;
+            border: none;
+        }
+        .section-title {
+            background: #ddd !important;
+        }
     }
 </style>
 </head>
 <body>
+
+<div class="container">
     <h1>FastBillingSolutions Leave Request Form</h1>
-    <table>
-        <tr><td><label>Employee Name:</label></td><td><input type="text"></td></tr>
-        <tr><td><label>Designation:</label></td><td><input type="text"></td></tr>
-        <tr><td><label>Department:</label></td><td><input type="text"></td></tr>
-        <tr><td><label>Team Lead / Supervisor Name:</label></td><td><input type="text"></td></tr>
+
+    <div class="section-title"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"> Employee Information</div>
+    <table border="1">
+        <tr>
+            <td>Employee Name:</td>
+            <td><input type="text"></td>
+            <td>Designation:</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>Department:</td>
+            <td><input type="text"></td>
+            <td>Supervisor Name:</td>
+            <td><input type="text"></td>
+        </tr>
     </table>
 
-    <table>
-        <tr><td><label>Leave Start Date:</label></td><td><input type="date" id="startDate"></td></tr>
-        <tr><td><label>Leave End Date:</label></td><td><input type="date" id="endDate"></td></tr>
+    <div class="section-title"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"> Leave Details</div>
+    <table border="1">
+        <tr>
+            <td>Leave Start Date:</td>
+            <td><input type="date"></td>
+            <td>Leave End Date:</td>
+            <td><input type="date"></td>
+        </tr>
+        <tr>
+            <td>No. of Days:</td>
+            <td><input type="number"></td>
+            <td>Leave Type:</td>
+            <td><input type="text"></td>
+        </tr>
     </table>
 
-    <table>
-        <tr><td><label>No. of Days:</label></td><td><input type="number" id="numDays" readonly></td></tr>
-        <tr><td><label>Leave Type:</label></td><td><select>
-            <option>Annual Leave</option>
-            <option>Sick Leave</option>
-            <option>Casual Leave</option>
-        </select></td></tr>
-    </table>
+    <div class="section-title"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png"> Reason for Leave</div>
+    <textarea rows="3"></textarea>
 
-    <label style="margin-left:15%; display:block;">Reason for Leave:</label>
-    <table style="width:70%; margin:0 auto;">
-        <tr><td><textarea rows="3"></textarea></td></tr>
+    <div class="section-title"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png"> Acknowledgment</div>
+    <table border="1">
+        <tr>
+            <td>Date of Request:</td>
+            <td><input type="date"></td>
+            <td>Status:</td>
+            <td>
+                <select>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Supervisor Name:</td>
+            <td><input type="text"></td>
+            <td>Date:</td>
+            <td><input type="date"></td>
+        </tr>
+        <tr>
+            <td>Employee Signature:</td>
+            <td colspan="3" class="signature-box"></td>
+        </tr>
     </table>
+</div>
 
-    <script>
-        document.getElementById('startDate')?.addEventListener('change', calculateDays);
-        document.getElementById('endDate')?.addEventListener('change', calculateDays);
-        function calculateDays(){
-            const start = new Date(document.getElementById('startDate')?.value);
-            const end = new Date(document.getElementById('endDate')?.value);
-            if(start && end && end >= start){
-                const diffTime = Math.abs(end - start);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                document.getElementById('numDays').value = diffDays;
-            }
-        }
-    </script>
 </body>
 </html>
