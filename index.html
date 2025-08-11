@@ -35,7 +35,7 @@
     max-width: 210mm;
     background: #ffffff;
     border-radius: 10px;
-    padding: 16px 24px; /* Reduced padding */
+    padding: 30px 40px;
     box-shadow: 0 8px 30px rgba(16,24,40,0.06);
   }
 
@@ -79,11 +79,11 @@
   table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 4px; /* Reduced vertical spacing */
-    margin-top: 8px;       /* Reduced margin */
+    border-spacing: 0 10px;
+    margin-top: 12px;
   }
   td {
-    padding: 4px 8px;      /* Reduced padding */
+    padding: 8px 10px;
     vertical-align: middle;
     white-space: nowrap;
   }
@@ -121,7 +121,7 @@
     outline: none;
   }
   textarea {
-    min-height: 60px; /* Reduced height */
+    min-height: 80px;
     resize: vertical;
   }
   textarea.invalid {
@@ -163,15 +163,13 @@
 
   /* Style for the Note message */
   .note-message {
-    margin: 12px 0 20px;
-    padding: 10px;
-    background: #e3f2fd;
-    border-left: 4px solid #1565c0;
-    color: #1565c0;
-    font-weight: 600;
-    border-radius: 4px;
-    font-size: 0.95rem;
-  }
+       margin: 12px 0 20px;
+  padding: 10px;
+  color: #1565c0;  /* Blue color (same as your header and section titles) */
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;  /* Same font family */
+  font-weight: 400;  /* Same font weight as standard form text */
+  font-size: 0.9rem;  /* Slightly smaller font size */
+}
 
   @media print {
     body {
@@ -207,11 +205,11 @@
       <tr>
         <td style="width:30%"><label for="employeeName" id="labelEmployeeName">Employee Name:</label></td>
         <td style="width:40%">
-          <input type="text" id="employeeName" placeholder="e.g. abc" />
+          <input type="text" id="employeeName" placeholder="e.g. Alex" />
         </td>
         <td style="width:15%"><label for="designation" id="labelDesignation">Designation:</label></td>
         <td style="width:15%">
-          <input type="text" id="designation" placeholder="e.g. AR Executive" />
+          <input type="text" id="designation" placeholder="e.g. Billing Executive" />
         </td>
       </tr>
       <tr>
@@ -238,7 +236,7 @@
       <tr>
         <td><label for="days" id="labelDays">No. of Days:</label></td>
         <td>
-          <input type="number" id="days" readonly placeholder="Auto-calculated" />
+          <input type="number" id="days" readonly placeholder="Auto Calculate" />
         </td>
         <td><label for="leaveType" id="labelLeaveType">Leave Type:</label></td>
         <td>
@@ -270,7 +268,7 @@
 
     <!-- Note added here -->
     <p class="note-message">
-      <strong>Note:</strong> Our online leave application portal is currently under development. In the meantime, we are sharing the application form with you. To apply for leave, please complete the form, download it as a JPG image, and email the attachment to the concerned persons.
+      <strong> Note: </strong> Our online Adherence portal is currently undergoing processing. While in the testing phase, we are providing only the application form for your use. To apply for leave, please complete the form, download it as a JPG image, and email the attachment to the appropriate individuals.
     </p>
 
     <div class="submit-row">
