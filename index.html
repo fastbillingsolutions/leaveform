@@ -18,12 +18,12 @@
     min-height: 100vh;
     box-sizing: border-box;
   }
-  *, *:before, *:after {
+  *,*:before,*:after {
     box-sizing: inherit;
   }
   .page {
     width: 90vw;
-    max-width: 210mm;
+    max-width: 250mm;
     background: transparent;
     padding: 0;
     display: flex;
@@ -32,7 +32,7 @@
   }
   .card {
     width: 100%;
-    max-width: 210mm;
+    max-width: 300mm;
     background: #ffffff;
     border-radius: 10px;
     padding: 20px 28px;
@@ -49,13 +49,13 @@
   header h1 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #003366; /* Deep navy */
+    color: #003366;
     margin: 0;
   }
   .subheading {
     text-align: center;
     font-weight: 600;
-    color: #0047AB; /* Royal blue */
+    color: #0047AB;
     font-size: 1.2rem;
     margin-bottom: 12px;
   }
@@ -68,7 +68,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #002b80; /* Dark navy blue */
+    color: #002b80;
   }
   .section-title img {
     width: 22px;
@@ -90,17 +90,16 @@
   }
   label.invalid {
     color: #d32f2f !important;
-    font-weight: 700 !important;
-    position: relative;
+    font-weight: normal !important;
   }
   label.invalid::before {
-    content: "*";
+    content:"*";
     color: #d32f2f;
-    font-weight: 700;
-    position: absolute;
-    left: -14px;
-    top: 50%;
-    transform: translateY(-50%);
+    font-weight: normal;
+    position:absolute;
+    left: -10px;
+    top: 30%;
+    transform: translateY(-40%);
   }
   input, select, textarea {
     width: 100%;
@@ -185,7 +184,7 @@
       <h1>Fast Billing Solutions</h1>
     </header>
 
-    <div class="subheading">Leave Request Form</div>
+    <div class="subheading">Employee Leave Request Form</div>
 
     <div class="section-title">
       <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Employee Icon" />
@@ -193,10 +192,10 @@
     </div>
     <table>
       <tr>
-        <td style="width:30%"><label for="employeeName" id="labelEmployeeName">Employee Name:</label></td>
-        <td style="width:40%"><input type="text" id="employeeName" placeholder="e.g. Alex" /></td>
-        <td style="width:15%"><label for="designation" id="labelDesignation">Designation:</label></td>
-        <td style="width:15%"><input type="text" id="designation" placeholder="e.g. Billing Executive" /></td>
+        <td style="width:18%"><label for="employeeName" id="labelEmployeeName">Employee Name:</label></td>
+        <td style="width:32%"><input type="text" id="employeeName" placeholder="e.g. Alex" /></td>
+        <td style="width:18%"><label for="designation" id="labelDesignation">Designation:</label></td>
+        <td style="width:32%"><input type="text" id="designation" placeholder="e.g. Billing Executive" /></td>
       </tr>
       <tr>
         <td><label for="department" id="labelDepartment">Team / Department:</label></td>
@@ -212,10 +211,10 @@
     </div>
     <table>
       <tr>
-        <td style="width:22%"><label for="startDate" id="labelStartDate">Leave Start Date:</label></td>
-        <td style="width:28%"><input type="date" id="startDate" /></td>
-        <td style="width:22%"><label for="endDate" id="labelEndDate">Leave End Date:</label></td>
-        <td style="width:28%"><input type="date" id="endDate" /></td>
+        <td style="width:20%"><label for="startDate" id="labelStartDate">Leave Start Date:</label></td>
+        <td style="width:30%"><input type="date" id="startDate" /></td>
+        <td style="width:20%"><label for="endDate" id="labelEndDate">Leave End Date:</label></td>
+        <td style="width:30%"><input type="date" id="endDate" /></td>
       </tr>
       <tr>
         <td><label for="days" id="labelDays">No. of Days:</label></td>
@@ -230,26 +229,31 @@
         </td>
       </tr>
       <tr>
-        <td><label for="leaveDuration" id="labelLeaveDuration">Leave Duration:</label></td>
-        <td>
+        <td style="width:18%;"><label for="leaveDuration" id="labelLeaveDuration">Leave Duration:</label></td>
+        <td style="width:32%;">
           <select id="leaveDuration">
             <option value="full">Full Day</option>
-            <option value="half_morning">Half Day</option>
+            <option value="half">Half Day</option>
           </select>
         </td>
-        <td></td>
-        <td></td>
+        <td style="width:18%;"><label for="halfLeaveType" id="labelHalfLeaveType">Half Leave Type:</label></td>
+        <td style="width:32%;">
+          <select id="halfLeaveType">
+            <option value="1st">1st Half</option>
+            <option value="2nd">2nd Half</option>
+          </select>
+        </td>
       </tr>
     </table>
 
-    <div class="section-title">
+    <p><div class="section-title">
       <img src="https://cdn-icons-png.flaticon.com/512/1157/1157109.png" alt="Reason Icon" />
       Reason for Leave
-    </div>
-    <textarea id="reason" placeholder="Short description..."></textarea>
+    </div></p>
+    <p><textarea id="reason" placeholder="Short description..."></textarea></p2>
 
     <p class="note-message">
-      <strong> Note:   </strong> Our online Adherence portal is currently undergoing processing. While in the testing phase, we are providing only the application form for your use. To apply for leave, please complete the form, download it as a JPG image, and email the attachment to the appropriate individuals.
+      <strong>Note:</strong> Our online Adherence portal is currently undergoing processing. While in the testing phase, we are providing only the application form for your use. To apply for leave, please complete the form, download it as a JPG image, and email the attachment to the appropriate individuals.
     </p>
 
     <div class="submit-row">
@@ -264,11 +268,26 @@
   (function () {
     const submitBtn = document.getElementById('submitBtn');
     const statusEl = document.getElementById('status');
-    const containerSelector = '#formContainer';
-    const start = document.getElementById('startDate');
-    const end = document.getElementById('endDate');
-    const days = document.getElementById('days');
-    const leaveDuration = document.getElementById('leaveDuration');
+    const container = document.getElementById('formContainer');
+
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const daysInput = document.getElementById('days');
+    const leaveDurationSelect = document.getElementById('leaveDuration');
+    const halfLeaveTypeSelect = document.getElementById('halfLeaveType');
+
+    const fields = {
+      employeeName: document.getElementById('employeeName'),
+      designation: document.getElementById('designation'),
+      department: document.getElementById('department'),
+      date: document.getElementById('date'),
+      startDate: startDateInput,
+      endDate: endDateInput,
+      leaveType: document.getElementById('leaveType'),
+      leaveDuration: leaveDurationSelect,
+      halfLeaveType: halfLeaveTypeSelect,
+      reason: document.getElementById('reason'),
+    };
 
     const labels = {
       employeeName: document.getElementById('labelEmployeeName'),
@@ -279,219 +298,185 @@
       endDate: document.getElementById('labelEndDate'),
       leaveType: document.getElementById('labelLeaveType'),
       leaveDuration: document.getElementById('labelLeaveDuration'),
+      halfLeaveType: document.getElementById('labelHalfLeaveType'),
       reason: null,
     };
-    const reasonTextarea = document.getElementById('reason');
 
-    function setStatus(text) {
-      statusEl.textContent = text || '';
-    }
-    function loadScript(url, timeout = 12000) {
-      return new Promise((resolve, reject) => {
-        if (window.html2canvas) return resolve();
-        const s = document.createElement('script');
-        s.src = url;
-        s.async = true;
-        let timer = setTimeout(() => {
-          s.onerror = s.onload = null;
-          reject(new Error('Timeout loading ' + url));
-        }, timeout);
-        s.onload = () => {
-          clearTimeout(timer);
-          resolve();
-        };
-        s.onerror = () => {
-          clearTimeout(timer);
-          reject(new Error('Failed to load ' + url));
-        };
-        document.head.appendChild(s);
-      });
-    }
+    // Update days count
     function updateDays() {
-      const dur = leaveDuration ? leaveDuration.value : 'full';
-      if (typeof dur === 'string' && dur.startsWith('half')) {
-        days.value = 0.5;
-        days.readOnly = true;
+      if (!startDateInput.value || !endDateInput.value) {
+        daysInput.value = '';
         return;
       }
-      days.readOnly = true;
-      if (!start.value || !end.value) {
-        days.value = '';
+      if (leaveDurationSelect.value === 'half') {
+        daysInput.value = 0.5;
         return;
       }
-      const s = new Date(start.value + 'T00:00:00');
-      const e = new Date(end.value + 'T00:00:00');
-      if (isNaN(s) || isNaN(e)) {
-        days.value = '';
+      const start = new Date(startDateInput.value);
+      const end = new Date(endDateInput.value);
+      if (start > end) {
+        daysInput.value = '';
         return;
       }
-      const diffDays = Math.round((e - s) / (1000 * 60 * 60 * 24)) + 1;
-      days.value = diffDays > 0 ? diffDays : 0;
+      const diffTime = end - start;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      daysInput.value = diffDays;
     }
-    function ensureImgsCORS(container) {
-      try {
-        const imgs = container.querySelectorAll('img');
-        imgs.forEach((img) => {
-          try {
-            img.crossOrigin = 'anonymous';
-          } catch (e) {}
-        });
-      } catch (e) {}
+
+    // Enable/disable halfLeaveType dropdown
+    function toggleHalfLeaveType() {
+      if (leaveDurationSelect.value === 'full') {
+        halfLeaveTypeSelect.disabled = true;
+        halfLeaveTypeSelect.style.backgroundColor = '#e0e0e0';
+        halfLeaveTypeSelect.style.color = '#888';
+      } else {
+        halfLeaveTypeSelect.disabled = false;
+        halfLeaveTypeSelect.style.backgroundColor = '';
+        halfLeaveTypeSelect.style.color = '';
+      }
     }
-    function clearValidationStyles() {
-      Object.values(labels).forEach(label => {
-        if (label) {
-          label.classList.remove('invalid');
-          if(label.dataset.origText) label.textContent = label.dataset.origText;
-        }
-      });
-      reasonTextarea.classList.remove('invalid');
-    }
+
+    // Validate form inputs and show red asterisks on missing required fields
     function validateForm() {
-      clearValidationStyles();
-      const requiredFields = [
-        { id: 'employeeName', name: 'Employee Name' },
-        { id: 'designation', name: 'Designation' },
-        { id: 'department', name: 'Department' },
-        { id: 'date', name: 'Date' },
-        { id: 'startDate', name: 'Leave Start Date' },
-        { id: 'endDate', name: 'Leave End Date' },
-        { id: 'leaveType', name: 'Leave Type' },
-        { id: 'leaveDuration', name: 'Leave Duration' },
-        { id: 'reason', name: 'Reason for Leave' },
+      let valid = true;
+      // Clear all invalid classes first
+      Object.values(labels).forEach(label => {
+        if (label) label.classList.remove('invalid');
+      });
+      fields.reason.classList.remove('invalid');
+
+      // Required fields to check
+      const required = [
+        'employeeName',
+        'designation',
+        'department',
+        'date',
+        'startDate',
+        'endDate',
+        'leaveType',
+        'leaveDuration',
+        'reason'
       ];
-      for (const field of requiredFields) {
-        const el = document.getElementById(field.id);
-        const label = labels[field.id];
-        if (!el || !el.value || el.value.trim() === '') {
-          if (label) {
-            label.classList.add('invalid');
-          } else if(field.id === 'reason'){
-            reasonTextarea.classList.add('invalid');
+
+      for (const key of required) {
+        const val = fields[key].value.trim();
+        if (!val) {
+          if (key === 'reason') {
+            fields.reason.classList.add('invalid');
+          } else {
+            labels[key].classList.add('invalid');
           }
-          alert(`Please fill the "${field.name}" field.`);
-          el && el.focus();
-          return false;
+          if (valid) fields[key].focus();
+          valid = false;
         }
       }
-      if (new Date(start.value) > new Date(end.value)) {
-        labels.startDate.classList.add('invalid');
-        labels.endDate.classList.add('invalid');
-        alert('Leave End Date must be after or equal to Leave Start Date.');
-        start.focus();
-        return false;
+
+      // Check if startDate <= endDate
+      if (fields.startDate.value && fields.endDate.value) {
+        if (new Date(fields.startDate.value) > new Date(fields.endDate.value)) {
+          labels.startDate.classList.add('invalid');
+          labels.endDate.classList.add('invalid');
+          alert('Leave End Date must be after or equal to Leave Start Date.');
+          fields.startDate.focus();
+          valid = false;
+        }
       }
-      return true;
+
+      return valid;
     }
-    function addInputListeners() {
-      Object.entries(labels).forEach(([key, label]) => {
-        const el = document.getElementById(key);
-        if (!el) return;
-        el.addEventListener('input', () => {
-          if (label && label.classList.contains('invalid') && el.value.trim() !== '') {
-            label.classList.remove('invalid');
-          }
-        });
-      });
-      reasonTextarea.addEventListener('input', () => {
-        if (reasonTextarea.classList.contains('invalid') && reasonTextarea.value.trim() !== '') {
-          reasonTextarea.classList.remove('invalid');
+
+    // Load html2canvas if not loaded
+    function loadHtml2canvas() {
+      return new Promise((resolve, reject) => {
+        if (window.html2canvas) resolve();
+        else {
+          const script = document.createElement('script');
+          script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+          script.onload = () => resolve();
+          script.onerror = () => reject();
+          document.head.appendChild(script);
         }
       });
     }
-    async function submitHandler() {
+
+    // Generate and download image
+    async function generateImage() {
       if (!validateForm()) return;
+
       submitBtn.disabled = true;
-      setStatus('Preparing the form image...');
-      const container = document.querySelector(containerSelector);
-      if (!container) {
-        alert('Form container not found.');
+      statusEl.textContent = 'Loading renderer...';
+
+      try {
+        await loadHtml2canvas();
+      } catch {
+        statusEl.textContent = 'Failed to load renderer.';
+        alert('Failed to load image renderer.');
         submitBtn.disabled = false;
         return;
       }
-      ensureImgsCORS(container);
+
+      statusEl.textContent = 'Rendering image...';
+
       try {
-        setStatus('Loading renderer (html2canvas)...');
-        await loadScript(
-          'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
-        );
-      } catch (err) {
-        console.warn('html2canvas load error:', err);
-        setStatus('html2canvas failed to load — opening printable view as fallback.');
-        openPrintableWindow(container.outerHTML);
-        alert('Renderer failed to load. A printable version has been opened in a new tab — save/print it.');
-        submitBtn.disabled = false;
-        return;
-      }
-      setStatus('Rendering the form into an image...');
-      submitBtn.style.display = 'none';
-      try {
-        const canvas = await window.html2canvas(container, {
+        const canvas = await html2canvas(container, {
           useCORS: true,
           scale: 2,
-          logging: false,
+          logging: false
         });
-        if (!canvas) throw new Error('Rendering returned no canvas');
-        setStatus('Converting to image file...');
-        canvas.toBlob(
-          (blob) => {
-            submitBtn.style.display = '';
-            if (!blob) {
-              setStatus('Failed to create image blob.');
-              alert('Failed to create image file.');
-              submitBtn.disabled = false;
-              return;
-            }
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'leave_request.jpg';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-            setStatus('Form downloaded successfully.');
+        canvas.toBlob(blob => {
+          if (!blob) {
+            alert('Failed to create image.');
             submitBtn.disabled = false;
-          },
-          'image/jpeg',
-          0.92
-        );
-      } catch (err) {
-        console.error('Render error:', err);
-        submitBtn.style.display = '';
-        setStatus('Error generating image. Opening printable view as fallback.');
-        openPrintableWindow(container.outerHTML);
-        alert('Error generating the image. A printable version has been opened in a new tab — please save it.');
+            return;
+          }
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'leave_request.jpg';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+          statusEl.textContent = 'Form downloaded successfully.';
+          submitBtn.disabled = false;
+        }, 'image/jpeg', 0.92);
+      } catch (e) {
+        alert('Error generating image: ' + e.message);
         submitBtn.disabled = false;
       }
     }
-    function openPrintableWindow(html) {
-      const w = window.open('', '_blank');
-      const styles = Array.from(
-        document.querySelectorAll('style, link[rel="stylesheet"]')
-      )
-        .map((n) => n.outerHTML)
-        .join('\n');
-      w.document.write(
-        '<!doctype html><html><head><meta charset="utf-8"><title>Printable Leave Request</title>' +
-          styles +
-          '</head><body>'
-      );
-      w.document.write(html);
-      w.document.write('</body></html>');
-      w.document.close();
-    }
-    submitBtn.addEventListener('click', submitHandler);
-    start.addEventListener('change', updateDays);
-    start.addEventListener('input', updateDays);
-    end.addEventListener('change', updateDays);
-    end.addEventListener('input', updateDays);
-    leaveDuration.addEventListener('change', updateDays);
-    addInputListeners();
+
+    // Event listeners
+    startDateInput.addEventListener('change', () => {
+      updateDays();
+    });
+    endDateInput.addEventListener('change', () => {
+      updateDays();
+    });
+    leaveDurationSelect.addEventListener('change', () => {
+      toggleHalfLeaveType();
+      updateDays();
+    });
+
+    // Remove invalid styling on input
+    Object.entries(fields).forEach(([key, field]) => {
+      field.addEventListener('input', () => {
+        if (key === 'reason') {
+          if (field.value.trim() !== '') field.classList.remove('invalid');
+        } else {
+          if (labels[key] && field.value.trim() !== '') labels[key].classList.remove('invalid');
+        }
+      });
+    });
+
+    submitBtn.addEventListener('click', generateImage);
+
+    // Initial states
+    toggleHalfLeaveType();
     updateDays();
+
   })();
 </script>
 
 </body>
 </html>
-
