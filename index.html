@@ -417,6 +417,10 @@
 
       statusEl.textContent = 'Rendering image...';
 
+      // Hide the button container before rendering
+      const submitRow = document.querySelector('.submit-row');
+      submitRow.style.display = 'none';
+
       try {
         const canvas = await html2canvas(container, {
           useCORS: true,
@@ -424,6 +428,9 @@
           logging: false
         });
         canvas.toBlob(blob => {
+          // Restore button display after image creation
+          submitRow.style.display = '';
+
           if (!blob) {
             alert('Failed to create image.');
             submitBtn.disabled = false;
@@ -441,6 +448,8 @@
           submitBtn.disabled = false;
         }, 'image/jpeg', 0.92);
       } catch (e) {
+        // Restore button display in case of error
+        submitRow.style.display = '';
         alert('Error generating image: ' + e.message);
         submitBtn.disabled = false;
       }
